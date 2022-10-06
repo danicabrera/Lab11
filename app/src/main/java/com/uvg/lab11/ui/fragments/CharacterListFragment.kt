@@ -110,7 +110,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list), Charac
                 gender = "Male",
                 image = "",
                 origin = "Tierra",
-                episode = listOf("12", "24")
+                episode = ""
             ),
             Character(
                 id = 2,
@@ -120,7 +120,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list), Charac
                 gender = "Female",
                 image = "",
                 origin = "Tierra",
-                episode = listOf("15", "47")
+                episode = ""
             )
 
         ))

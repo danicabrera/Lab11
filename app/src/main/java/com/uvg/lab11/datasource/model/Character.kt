@@ -13,6 +13,6 @@ data class Character(
     val gender: String,
     val image: String,
     val origin: String,
-    val episode: List<String>
+    val episode: String
 )
 
