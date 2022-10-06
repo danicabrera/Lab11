@@ -19,6 +19,7 @@ import com.uvg.lab11.ui.adapters.CharacterAdapter
 import com.uvg.lab11.ui.dataStore
 import com.uvg.lab11.ui.removePreferencesValue
 import com.google.android.material.appbar.MaterialToolbar
+import com.uvg.lab11.datasource.model.Database
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,13 +33,16 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list), Charac
     private lateinit var adapter: CharacterAdapter
     private lateinit var toolbar: MaterialToolbar
     private lateinit var recyclerCharacters: RecyclerView
+    private lateinit var database: Database
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        recyclerCharacters = view.findViewById(R.id.recycler_characters)
-        toolbar = view.findViewById(R.id.toolbar_characterList)
-
+        view.apply {
+            recyclerCharacters = view.findViewById(R.id.recycler_characters)
+            toolbar = view.findViewById(R.id.toolbar_characterList)
+        }
+//        setupRecycler(characters)
         setToolbar()
         setListeners()
         getCharacters()
@@ -97,6 +101,29 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list), Charac
     private fun setupRecycler(characters: MutableList<Character>) {
 
         this.characters = characters
+        characters.addAll(listOf(
+            Character(
+                id = 1,
+                name = "Juanillo",
+                status = "Alive",
+                species = "Human",
+                gender = "Male",
+                image = "",
+                origin = "Tierra",
+                episode = listOf("12", "24")
+            ),
+            Character(
+                id = 2,
+                name = "Marilla",
+                status = "Alive",
+                species = "Human",
+                gender = "Female",
+                image = "",
+                origin = "Tierra",
+                episode = listOf("15", "47")
+            )
+
+        ))
 
         adapter = CharacterAdapter(this.characters, this)
         recyclerCharacters.layoutManager = LinearLayoutManager(requireContext())
@@ -117,7 +144,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list), Charac
 
     override fun onItemClicked(character: Character) {
         val action = CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailsFragment(
-            character.id.toInt()
+            character.id
         )
 
         requireView().findNavController().navigate(action)

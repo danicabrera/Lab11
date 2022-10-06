@@ -18,8 +18,11 @@ class CharacterAdapter(
     private val listener: RecyclerViewCharactersEvents
 ) : RecyclerView.Adapter<CharacterAdapter.ViewHolder>() {
 
+    interface characterClickListeners{
+
+    }
     class ViewHolder(
-        private val view: View,
+        view: View,
         private val listener: RecyclerViewCharactersEvents
     ) : RecyclerView.ViewHolder(view) {
 
@@ -50,6 +53,7 @@ class CharacterAdapter(
 
     interface RecyclerViewCharactersEvents {
         fun onItemClicked(character: Character)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

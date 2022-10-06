@@ -80,8 +80,8 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
             txtSpecies.text = species
             txtStatus.text = status
             txtGender.text = gender
-            txtOrigin.text = origin.name
-            txtEpisodes.text = episode.size.toString()
+            txtOrigin.text = origin
+            txtEpisodes.text = episode.toString()
             imageCharacter.load(image) {
                 placeholder(R.drawable.ic_downloading)
                 transformations(CircleCropTransformation())
